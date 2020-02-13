@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row mt-5">
+  {% for items in list_of_object %}
+    {% if items.task == given %}
+     <div class="col">
+       <ul class="list-group">
+         <li class="list-group-item"><h3>{{items.task}}</h3><br></br><h3>{{items.date}}</h3></li>
+
+         <form  action="edit_task/{{items.id}}/" method="post" class="form-inline mb-2 mr-sm-2">
+           <button type="submit" class="btn btn-primary mb-2">Update_task</button>
+           <input type="text" name="newtask" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="enter text to update Task...."required/>
+
+
+         </form>
+         <form  action="delete_task/{{items.id}}/" method="post">
+           <button type="submit" class="btn btn-danger mb-2">Delete</button>
+
+         </form>
+       </ul>
+       </div>
+
+     </div>
+  {% endif %}
+   {% endfor %}
+
+</div>
+<br>
+<br>
+<div class="row ">
+  <div class="col ml-5">
+    <form  action="{% url 'home' %}" method="post">
+       <h4> If task not found click back</h4>
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary mb-2">Back</button>
+    </form>
+
+  </div>
+
+</div>
+
+{% endblock %}

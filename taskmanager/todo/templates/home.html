@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+ {% block content %}
+   <div class="row mt-4">
+     <div class="col">
+       <h2>Add Task</h2>
+       <form action="add_task/" method="post" class="form-inline">
+       <input type="text" name="content" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Add Task...."required/>
+
+       <button type="submit" class="btn btn-primary mb-2">Submit</button>
+       </form>
+       </div>
+          <div class="col">
+            <h2>Search_Task</h2>
+           <form  action="search/" method="post" class="form-inline mt-2">
+             <input type="text" name="given" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Search Task...."required/>
+             <button type="submit" class="btn btn-warning">Search_Task</button>
+
+           </form>
+           </div>
+
+   </div>
+   <div class="row mt-4">
+     <div class="col">
+       <div class="list-group">
+         {% for item in do_list %}
+         <a href="#" class="list-group-item list-group-item-action"><h3>{{item.task}} <h3>Task Created On:{{item.date}}</h3> </h3>
+           <form action="delete/{{item.id}}/" action="post">
+          <div class="float-right mb-6"> <button type="submit" class="btn btn-sm btn-danger">Delete</button></div>
+          </form>
+          <br></br>
+          <form action="edit_task/{{item.id}}/" method="post"  class="form-inline">
+            <input type="text" name="newtask" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Edit Task...."required/>
+            <button type="submit" class="btn btn-primary mb-2">Edit</button>
+         </form>
+         </a>
+
+
+         {% endfor %}
+</div>
+     </div>
+   </div>
+
+ {% endblock %}
